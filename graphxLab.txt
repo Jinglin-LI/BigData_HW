@@ -1,0 +1,65 @@
+Let's create a social network of users liking each other's social media posts. For every person, we will keep track of their name and age.
+Every edge will contain source, destination and an integer indicating the number of times a person liked other's posts.
+Below is the code to create the social network:
+
+import org.apache.spark.graphx._
+import org.apache.spark.rdd.RDD
+
+val vertexArray = Array(
+  (1L, ("Alice", 28)),
+  (2L, ("Bob", 27)),
+  (3L, ("Charlie", 65)),
+  (4L, ("David", 42)),
+  (5L, ("Ed", 55)),
+  (6L, ("Fran", 50))
+  )
+val edgeArray = Array(
+  Edge(2L, 1L, 7),
+  Edge(2L, 4L, 2),
+  Edge(3L, 2L, 4),
+  Edge(3L, 6L, 3),
+  Edge(4L, 1L, 1),
+  Edge(5L, 2L, 2),
+  Edge(5L, 3L, 8),
+  Edge(5L, 6L, 3)
+  )
+  
+ val vertexRDD: RDD[(Long, (String, Int))] = sc.parallelize(vertexArray)
+ val edgeRDD: RDD[Edge[Int]] = sc.parallelize(edgeArray)
+ val graph: Graph[(String, Int), Int] = Graph(vertexRDD, edgeRDD)
+  
+  
+ 1. We would like to create a listing of those people who are at least 30 years old.
+ 
+ 
+ 3. Find the number of triplets in the graph
+
+
+ 4. Create a listing of who likes who's posts
+ 
+ 
+ 5. Now create a listing of those triplete where the number of likes is more than 5
+ 
+ 
+ 6. Display indegrees of each vertex
+ 
+ 7. We would like to find the user that follows the most number of people
+
+ 
+ 8. How many people whose posts user 5 likes also like each other's posts.
+ Another way to ask this question: how many triangles can you count around user 5
+ 
+
+ 
+ 9. Find the oldest follower of each user
+ 
+  
+10. Find the youngest follower of each user
+
+  
+11. Find the youngest person that each person is following
+
+  
+12. Find the pagerank of each user and list them in descending order:
+
+
